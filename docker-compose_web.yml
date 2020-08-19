@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    container_name: ${DDBJ_ONTOLOGIES_APP_CONTAINER_NAME:-ddbj_ontologies_app}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DDBJ_ONTOLOGIES_APP_IMAGE_NAME:-ddbj_ontologies_app}
+    environment:
+      APP_ROOT_PATH: ${DDBJ_ONTOLOGIES_APP_ROOT_DIR:-/usr/src/app}
+      DATA_PATH: ${DDBJ_ONTOLOGIES_APP_DATA_DIR:-/usr/src/app/data}
+    networks:
+      - ddbj
+    ports:
+      - ${DDBJ_ONTOLOGIES_APP_PORT:-3002}:3000
+    user: ${UID:-0}:${GID:-0}
+    volumes:
+      - ${PWD}:/usr/src/app
+    command: ["bundle", "exec", "unicorn", "-c", "/usr/src/app/config/unicorn.rb"]
+networks:
+  ddbj:
+    external:
+      name: ${DDBJ_NETWORK_NAME:-ddbj}

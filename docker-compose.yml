@@ -1,0 +1,26 @@
+version: '3'
+services:
+  convertor:
+    container_name: ${DDBJ_ONTOLOGIES_CONVERTOR_CONTAINER_NAME:-ddbj_ontologies_convertor}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DDBJ_ONTOLOGIES_CONVERTOR_IMAGE_NAME:-ddbj_ontologies_convertor}
+    user: ${UID:-0}:${DOCKER_GID:-999}
+    environment:
+      BASE_DIR: ${DDBJ_ONTOLOGIES_CONVERTOR_BASE_DIR:-/usr/src/app}
+      LOG_DIR: ${DDBJ_ONTOLOGIES_CONVERTOR_LOG_DIR:-/usr/src/app/logs}
+    volumes:
+      - ${PWD}/data:/usr/src/app/data
+      - ${PWD}/bin:/usr/src/app/bin
+      - ${PWD}/logs:/usr/src/app/logs
+
+  raptor:
+    container_name: ${DDBJ_ONTOLOGIES_RAPTOR_CONTAINER_NAME:-ddbj_ontologies_raptor}
+    image: ${DDBJ_ONTOLOGIES_RAPTOR_IMAGE_NAME:-ddbj_ontologies_raptor}
+    build:
+      context: config
+      dockerfile: Dockerfile.raptor
+    user: ${UID:-0}:${GID:-0}
+    volumes:
+      - ${PWD}/data/taxonomy:/data

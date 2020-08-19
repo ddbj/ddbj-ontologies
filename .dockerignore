@@ -1,0 +1,3 @@
+.dockerignore
+data
+taxdump.tar.gz

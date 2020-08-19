@@ -1,0 +1,22 @@
+#ontology name
+ontology_name:
+  nucleotide
+
+#template file for change from rdfxml to html
+xslfile_name:
+  nucleotide_owl2xhtml.xsl
+
+output_dir:
+  ./output/nucleotide
+
+#prefix of resourceURIs
+resource_prefix:
+  http://ddbj.nig.ac.jp/ontologies/nucleotide/
+
+#xpath for get resourceURIs
+resource_xpath:
+  .//*[ (namespace-uri()='http://www.w3.org/2002/07/owl#' and (local-name()='Class' or local-name()='ObjectProperty' or local-name()='DatatypeProperty') and @rdf:about ) or (rdf:type[@rdf:resource='http://www.w3.org/2002/07/owl#NamedIndividual']) ]
+
+#for ontologies page
+ontology_xpath:
+  .//*[ (namespace-uri()='http://www.w3.org/2002/07/owl#' and (local-name()='Ontology')) ]

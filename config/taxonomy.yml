@@ -1,0 +1,19 @@
+#ontology name
+ontology_name:
+  taxonomy
+
+#template file for change from rdfxml to html
+xslfile_name:
+  taxonomy_owl2xhtml.xsl
+
+#prefix of resourceURIs
+resource_prefix:
+  http://ddbj.nig.ac.jp/ontologies/taxonomy/
+
+#xpath for get resourceURIs
+resource_xpath:
+  .//*[ (namespace-uri()='http://www.w3.org/2002/07/owl#' and (local-name()='Class' or local-name()='ObjectProperty' or local-name()='DatatypeProperty') and @rdf:about ) or (namespace-uri()='http://ddbj.nig.ac.jp/ontologies/taxonomy/' and @rdf:about) ]
+
+#for ontologies page
+ontology_xpath:
+  .//*[ (namespace-uri()='http://www.w3.org/2002/07/owl#' and (local-name()='Ontology')) ]
