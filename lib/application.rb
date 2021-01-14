@@ -31,6 +31,11 @@ module DDBJOntologies
       end
     end
 
+    # virtuoso db files
+    get '/ontologies/virtuoso.db' do ||
+      send_file File.join(settings.public_folder, "virtuoso.db")
+    end
+
     # resource uri
     get '/ontologies/:ontology/:resource' do |ontology, resource|
       ontology.downcase!
