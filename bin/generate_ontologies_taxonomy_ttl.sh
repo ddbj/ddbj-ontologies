@@ -5,9 +5,11 @@
 # 2. Gnerates turtle file from taxdump with taxdump2owl.rb
 #
 
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+BASE_DIR=$(realpath "${SCRIPT_DIR}/../")
 OWL_DIR=$BASE_DIR/data/taxonomy
 TAX_DUMP_DIR=$OWL_DIR/taxdump
-LOG_FILE=$LOG_DIR/OwlConverter.log
+LOG_FILE=$BASE_DIR/logs/OwlConverter.log
 
 LOG()
 {
